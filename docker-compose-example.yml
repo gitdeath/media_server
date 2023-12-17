@@ -27,8 +27,8 @@ services:
       #mode: global
       placement:
         constraints:
-         - node.labels.transcode==1
-         - node.labels.isdmm==1
+         - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
+         - node.labels.isdmm==1 # 
         max_replicas_per_node: 1
 
   jellyfin-transcode: 
@@ -43,8 +43,8 @@ services:
       - SYS_ADMIN
       - SYS_MODULE
     volumes:
-     - jellyfin_config:/config
-     - ssh_auth:/root/.ssh
+     - jellyfin_config:/config # Volume for /config directory
+     - ssh_auth:/root/.ssh # Volume for /config/rrfmpeg/.ssh
      - jellyfin_cache:/cache
      - media:/media
      - /dev/dri:/dev/dri
@@ -52,7 +52,7 @@ services:
       replicas: 2
       placement:
         constraints:
-         - node.labels.transcode==1
+         - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
          - node.labels.isdmm==1
          - node.labels.isjellyfin==0
         max_replicas_per_node: 1
@@ -73,15 +73,15 @@ services:
      - 1900:1900
      - 7359:7359
     volumes:
-     - jellyfin_config:/config
-     - jellyfin_cache:/cache
-     - media:/media
+     - jellyfin_config:/config # Volume for /config directory
+     - jellyfin_cache:/cache # Volume for /config directory
+     - media:/media # Volume for media directory
      - /dev/dri:/dev/dri
-     - /transcodes:/transcodes
+     - /transcodes:/transcodes 
     deploy:
       placement:
         constraints:
-         - node.labels.transcode==1
+         - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
          - node.labels.isnfs==1
  
 networks:         
