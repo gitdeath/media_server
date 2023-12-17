@@ -17,3 +17,4 @@ Host System Assumptions:
 - Directory /transcodes exists
     ```
   mkdir /transcodes
+- SSD with enough space to handle transcodes
