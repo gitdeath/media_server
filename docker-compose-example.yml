@@ -1,0 +1,109 @@
+version: '3.8'
+services:
+  nfs-server:
+    image: ghcr.io/obeone/nfs-server:latest
+    cap_add:
+      - SYS_ADMIN
+      - SYS_MODULE
+    environment:
+      - TZ=America/Chicago
+      - NFS_EXPORT_0=/transcodes      *(rw,sync,no_subtree_check,no_root_squash,insecure)
+      - NFS_VERSION=3
+      #- NFS_LOG_LEVEL=DEBUG
+    ports:
+      - 2049:2049
+      - 111:111
+      - 32765:32765
+      - 32767:32767
+      - 2049:2049/udp
+      - 111:111/udp
+      - 32765:32765/udp
+      - 32767:32767/udp
+    networks:
+      - default
+    volumes:
+      - /transcodes:/transcodes
+    deploy:
+      #mode: global
+      placement:
+        constraints:
+         - node.labels.transcode==1
+         - node.labels.isdmm==1
+        max_replicas_per_node: 1
+
+  jellyfin-transcode: 
+    image: ghcr.io/gitdeath/rffmpeg-worker:main
+    hostname: "jellyfin-transcode-{{.Task.Slot}}"
+    environment:
+     - TZ=America/Chicago
+    networks:
+     - default
+     - swag_see_all
+    cap_add:
+      - SYS_ADMIN
+      - SYS_MODULE
+    volumes:
+     - jellyfin_config:/config
+     - ssh_auth:/root/.ssh
+     - jellyfin_cache:/cache
+     - media:/media
+     - /dev/dri:/dev/dri
+    deploy:
+      replicas: 2
+      placement:
+        constraints:
+         - node.labels.transcode==1
+         - node.labels.isdmm==1
+         - node.labels.isjellyfin==0
+        max_replicas_per_node: 1
+
+  jellyfin: 
+    image: ghcr.io/gitdeath/jellyfin-rffmpeg-server:latest
+    environment:
+     - TZ=America/Chicago
+    networks:
+
+     - default
+    cap_add:
+      - SYS_ADMIN
+      - SYS_MODULE
+    ports:
+     - 8096:8096
+     - 8920:8920
+     - 1900:1900
+     - 7359:7359
+    volumes:
+     - jellyfin_config:/config
+     - jellyfin_cache:/cache
+     - media:/media
+     - /dev/dri:/dev/dri
+     - /transcodes:/transcodes
+    deploy:
+      placement:
+        constraints:
+         - node.labels.transcode==1
+         - node.labels.isnfs==1
+ 
+networks:         
+  default:
+    driver: overlay
+
+
+volumes:
+  jellyfin_config:
+    driver_opts:
+      type: nfs
+
+  jellyfin_cache:
+    driver_opts:
+      type: nfs
+
+  ssh_auth:
+    driver_opts:
+      type: nfs
+
+  media:
+    driver_opts:
+      type: nfs
+
+
