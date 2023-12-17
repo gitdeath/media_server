@@ -19,3 +19,5 @@ Host System Assumptions:
   mkdir /transcodes
     
 - SSD with enough space to handle transcodes
+- Docker swarm is already setup and running
+- Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
