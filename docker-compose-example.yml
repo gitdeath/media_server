@@ -38,7 +38,7 @@ services:
      - TZ=America/Chicago
     networks:
      - default
-     - swag_see_all
+     
     cap_add:
       - SYS_ADMIN
       - SYS_MODULE
