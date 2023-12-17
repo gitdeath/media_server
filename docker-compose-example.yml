@@ -4,7 +4,6 @@ services:
     image: ghcr.io/obeone/nfs-server:latest
     cap_add:
       - SYS_ADMIN
-      - SYS_MODULE
     environment:
       - TZ=America/Chicago
       - NFS_EXPORT_0=/transcodes      *(rw,sync,no_subtree_check,no_root_squash,insecure)
@@ -41,7 +40,7 @@ services:
      
     cap_add:
       - SYS_ADMIN 
-      - SYS_MODULE
+
     volumes:
      - jellyfin_config:/config # Volume for /config directory
      - ssh_auth:/root/.ssh # Volume for /config/rrfmpeg/.ssh has to be a direct mount or SSH won't work properly
@@ -64,9 +63,7 @@ services:
     networks:
 
      - default
-    cap_add:
-      - SYS_ADMIN
-      - SYS_MODULE
+
     ports:
      - 8096:8096
      - 8920:8920
