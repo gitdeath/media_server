@@ -33,28 +33,28 @@ services:
 
   jellyfin-transcode: 
     image: ghcr.io/gitdeath/rffmpeg-worker:main
-    hostname: "jellyfin-transcode-{{.Task.Slot}}"
+    hostname: "jellyfin-transcode-{{.Task.Slot}}" # Defines naming convention for access by scaling script
     environment:
      - TZ=America/Chicago
     networks:
      - default
      
     cap_add:
-      - SYS_ADMIN
+      - SYS_ADMIN 
       - SYS_MODULE
     volumes:
      - jellyfin_config:/config # Volume for /config directory
-     - ssh_auth:/root/.ssh # Volume for /config/rrfmpeg/.ssh
-     - jellyfin_cache:/cache
-     - media:/media
-     - /dev/dri:/dev/dri
+     - ssh_auth:/root/.ssh # Volume for /config/rrfmpeg/.ssh has to be a direct mount or SSH won't work properly
+     - jellyfin_cache:/cache # Volume for cache directory
+     - media:/media # Volume for media directory
+     - /dev/dri:/dev/dri # Triggers DMM to allow device mapping as Docker Swarm doesn't handle natively
     deploy:
       replicas: 2
       placement:
         constraints:
          - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
-         - node.labels.isdmm==1
-         - node.labels.isjellyfin==0
+         - node.labels.isdmm==1 # Autolabel that checks is DMM is running on host
+         - node.labels.isjellyfin==0 # Autolable that checks to make sure Jellyfin isn't running on host (we don't want transcoding to be done on the same machine if possible) this can be used in other container placement requirements to prevent anything taking resource from Jellyfin
         max_replicas_per_node: 1
 
   jellyfin: 
@@ -74,9 +74,9 @@ services:
      - 7359:7359
     volumes:
      - jellyfin_config:/config # Volume for /config directory
-     - jellyfin_cache:/cache # Volume for /config directory
+     - jellyfin_cache:/cache # Volume for cache directory
      - media:/media # Volume for media directory
-     - /dev/dri:/dev/dri
+     - /dev/dri:/dev/dri # Triggers DMM to allow device mapping as Docker Swarm doesn't handle natively
      - /transcodes:/transcodes 
     deploy:
       placement:
@@ -87,7 +87,6 @@ services:
 networks:         
   default:
     driver: overlay
-
 
 volumes:
   jellyfin_config:
