@@ -2,7 +2,8 @@ Host System Assumptions:
 - Intel QSV CPU
 - Debian or Ubuntu
 - Low Power Mode is setup
-    ```https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support```
+    ```
+    https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
 - NFSD is installed
     ```
     apt install nfs-server
@@ -14,4 +15,5 @@ Host System Assumptions:
     sudo systemctl disable apparmor.service
     sudo apt purge apparmor
 - Directory /transcodes exists
-    ```mkdir /transcodes```
+    ```
+  mkdir /transcodes
