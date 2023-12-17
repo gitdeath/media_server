@@ -9,7 +9,8 @@ Host System Assumptions:
     sh -c "echo 'nfsd' >> /etc/modules"
     modprobe nfsd```
 - Apparmor is removed
-    ```sudo systemctl stop apparmor.service
+    ```
+    sudo systemctl stop apparmor.service
     sudo systemctl disable apparmor.service
     sudo apt purge apparmor```
 - Directory /transcodes exists
