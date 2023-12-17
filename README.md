@@ -4,12 +4,12 @@ Host System Assumptions:
 - Low Power Mode is setup
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
 - NFSD is installed
-    apt install nfs-server
+    ```apt install nfs-server
     sh -c "echo 'nfsd' >> /etc/modules"
-    modprobe nfsd
+    modprobe nfsd```
 - Apparmor is removed
-    sudo systemctl stop apparmor.service
+    ```sudo systemctl stop apparmor.service
     sudo systemctl disable apparmor.service
-    sudo apt purge apparmor
+    sudo apt purge apparmor```
 - Directory /transcodes exists
-    mkdir /transcodes
+    ```mkdir /transcodes```
