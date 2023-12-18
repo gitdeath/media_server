@@ -16,10 +16,10 @@ Host System Assumptions:
     sudo systemctl stop apparmor.service
     sudo systemctl disable apparmor.service
     sudo apt purge apparmor
-- Directory /transcodes exists
+- Directory /transcodes exists with group ownership to users
     ```
   mkdir /transcodes
-    
+  chgrp users /transcodes  
 - SSD with enough space to handle transcodes
 - Docker swarm is already setup and running
 - Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
