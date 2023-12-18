@@ -1,5 +1,5 @@
 # Jellyfin Docker Swarm stack that allows for fault tollerant [rffmpeg](https://github.com/joshuaboniface/rffmpeg).
-
+```NOTE: This isn't functioning at this time - Do not use```
 Host System Assumptions:
 - Intel QSV CPU
 - Debian or Ubuntu
