@@ -24,7 +24,6 @@ services:
     volumes:
       - /transcodes:/transcodes
     deploy:
-      #mode: global
       placement:
         constraints:
          - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
