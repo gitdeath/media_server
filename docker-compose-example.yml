@@ -9,6 +9,7 @@ services:
       - NFS_EXPORT_0=/transcodes      *(rw,sync,no_subtree_check,no_root_squash,insecure)
       - NFS_VERSION=3
       #- NFS_LOG_LEVEL=DEBUG
+    hostname: "jellyfin-nfs-server"
     ports:
       - 2049:2049
       - 111:111
