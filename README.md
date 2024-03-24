@@ -22,4 +22,8 @@ Host System Assumptions:
   chgrp users /transcodes  
 - SSD with enough space to handle transcodes
 - Docker swarm is already setup and running
+- Nodes are running a local container that allows for device mapping within swarm
+  ```
+  docker run -i --rm -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/allfro/allfro/device-mapping-manager:latest
+  ```
 - Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
