@@ -24,6 +24,9 @@ Host System Assumptions:
 - Docker swarm is already setup and running
 - Nodes are running a local container that allows for device mapping within swarm
   ```
+  Original:
   docker run -i --rm -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/allfro/allfro/device-mapping-manager:latest
+   Note: the below includes a fix that will map devices for containers already running.
+  docker run -i --rm -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/gitdeath/device-mapping-manager:master
   ```
 - Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
