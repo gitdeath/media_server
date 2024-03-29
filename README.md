@@ -6,6 +6,9 @@ Host System Assumptions:
 - Low Power Mode is setup
     ```
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
+- OpenCL is installed
+  ```
+  intel-opencl-icd
 - NFSD is installed
     ```
     apt install nfs-server
