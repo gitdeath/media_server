@@ -9,7 +9,7 @@ Host System Assumptions:
 - OpenCL is installed
   ```
   intel-opencl-icd
-Test command  /usr/lib/jellyfin-ffmpeg/ffmpeg -init_hw_device opencl=ocl -filter_hw_device ocl -f lavfi -i nullsrc=s=1920x1080,format=nv12 -vf hwupload,format=opencl -vframes 2000 -f null -
+
 
 - NFSD is installed
     ```
