@@ -38,3 +38,23 @@ Host System Assumptions:
   docker run -i --rm -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/gitdeath/device-mapping-manager:master
   ```
 - Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
+
+
+
+
+
+# Testing
+dmesg | grep -iE "huc|guc|dmc"
+
+```
+[    1.425611] Setting dangerous option enable_guc - tainting kernel
+[    1.478689] i915 0000:00:02.0: firmware: direct-loading firmware i915/kbl_dmc_ver1_04.bin
+[    1.479020] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
+[    1.479478] i915 0000:00:02.0: firmware: direct-loading firmware i915/kbl_guc_70.1.1.bin
+[    1.479582] i915 0000:00:02.0: firmware: direct-loading firmware i915/kbl_huc_4.0.0.bin
+[    1.483515] i915 0000:00:02.0: [drm] GuC firmware i915/kbl_guc_70.1.1.bin version 70.1.1
+[    1.483521] i915 0000:00:02.0: [drm] HuC firmware i915/kbl_huc_4.0.0.bin version 4.0.0
+[    1.507042] i915 0000:00:02.0: [drm] HuC authenticated
+[    1.507051] i915 0000:00:02.0: [drm] GuC submission disabled
+[    1.507055] i915 0000:00:02.0: [drm] GuC SLPC disabled
+```
