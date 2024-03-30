@@ -12,8 +12,6 @@ Host System Assumptions:
 - OpenCL is installed
   ```
   intel-opencl-icd
-
-
 - NFSD is installed
     ```
     apt install nfs-server
