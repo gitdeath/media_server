@@ -60,6 +60,7 @@ services:
     image: ghcr.io/gitdeath/jellyfin-rffmpeg-server:latest
     environment:
      - TZ=America/Chicago
+    user: 7001:100
     networks:
 
      - default
