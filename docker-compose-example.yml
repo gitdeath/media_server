@@ -27,7 +27,7 @@ services:
       placement:
         constraints:
          - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
-         - node.labels.isdmm==1 # 
+         - node.labels.isJellyfin==1
         max_replicas_per_node: 1
 
   jellyfin-transcode: 
@@ -52,7 +52,6 @@ services:
       placement:
         constraints:
          - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
-         - node.labels.isdmm==1 # Autolabel that checks is DMM is running on host
          - node.labels.isjellyfin==0 # Autolable that checks to make sure Jellyfin isn't running on host (we don't want transcoding to be done on the same machine if possible) this can be used in other container placement requirements to prevent anything taking resource from Jellyfin
         max_replicas_per_node: 1
 
@@ -80,7 +79,6 @@ services:
       placement:
         constraints:
          - node.labels.transcode==1 # Manual label used for swarm nodes that meet Host Assumptions
-         - node.labels.isnfs==1
  
 networks:         
   default:
