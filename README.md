@@ -32,7 +32,8 @@ Host System Assumptions:
   ```
   Original:
   docker run -i --restart always -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/allfro/allfro/device-mapping-manager:latest
-   Note: the below includes a fix that will map devices for containers already running.
+
+  Note: the below includes a fix that will map devices for containers already running.
   docker run -i --restart always -d --name device-manager --privileged --cgroupns=host --pid=host --userns=host -v /sys:/host/sys -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/gitdeath/device-mapping-manager:master
   ```
 - Nodes within the swarm that meet all assumptions have a label 'transcode' with a value of '1'
