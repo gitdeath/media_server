@@ -17,6 +17,7 @@ Host System Assumptions:
     sudo apt install nfs-common
     sudo apt install nfs-server
     sudo sh -c "echo 'nfsd' >> /etc/modules"
+    sudo sh -c "echo 'nfs' >> /etc/modules"
     sudo modprobe nfsd nfs
 - Apparmor is removed
     ```
