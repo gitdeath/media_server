@@ -12,11 +12,12 @@ Host System Assumptions:
 - OpenCL is installed
   ```
   intel-opencl-icd
-- NFSD is installed
+- NFS/NFSD is installed
     ```
-    apt install nfs-server
-    sh -c "echo 'nfsd' >> /etc/modules"
-    modprobe nfsd
+    sudo apt install nfs-common
+    sudo apt install nfs-server
+    sudo sh -c "echo 'nfsd' >> /etc/modules"
+    sudo modprobe nfsd nfs
 - Apparmor is removed
     ```
     sudo systemctl stop apparmor.service
