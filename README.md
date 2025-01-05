@@ -26,10 +26,10 @@ Host System Assumptions:
     sudo apt purge apparmor
 - Directory /transcodes and /cache exists with group ownership to users
     ```
-  mkdir /transcodes
-  chgrp users /transcodes
-  mkdir /cache
-  chgrp users /cache 
+  sudo mkdir /transcodes
+  sudo chgrp users /transcodes
+  sudo mkdir /cache
+  sudo chgrp users /cache 
 - SSD with enough space to handle transcodes
 - Docker swarm is already setup and running
 - Nodes are running a local container that allows for device mapping within swarm
