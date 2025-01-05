@@ -24,6 +24,7 @@ Host System Assumptions:
     sudo systemctl stop apparmor.service
     sudo systemctl disable apparmor.service
     sudo apt purge apparmor
+    sudo reboot
 - Directory /transcodes and /cache exists with group ownership to users
     ```
   sudo mkdir /transcodes
