@@ -11,7 +11,7 @@ Host System Assumptions:
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
 - OpenCL is installed
   ```
-  intel-opencl-icd
+  sudo apt install intel-opencl-icd
 - NFS/NFSD is installed
     ```
     sudo apt install nfs-common
