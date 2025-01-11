@@ -5,7 +5,7 @@ Host System Assumptions:
 - Debian or Ubuntu
 - Intel specific setup is followed including fixing all limitations of various kernels
     ```
-    https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#linux-setups
+    https://jellyfin.org/docs/general/administration/hardware-acceleration/intel
 - Low Power Mode is setup
     ```
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
