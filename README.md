@@ -6,7 +6,7 @@ Host System Assumptions:
 - Intel specific setup is followed including fixing all limitations of various kernels
     ```
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel/#verify-on-linux
-    https://jellyfin.org/docs/general/administration/hardware-acceleration/known-issues****
+    https://jellyfin.org/docs/general/administration/hardware-acceleration/known-issues
 - Low Power Mode is setup
     ```
     https://jellyfin.org/docs/general/administration/hardware-acceleration/intel#lp-mode-hardware-support
