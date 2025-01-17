@@ -31,7 +31,10 @@ Host System Assumptions:
   sudo mkdir /transcodes
   sudo chgrp users /transcodes
   sudo mkdir /cache
-  sudo chgrp users /cache 
+  sudo chgrp users /cache
+  sudo chmod 775 /transcodes
+  sudo chmod 775 /cache
+    
 - SSD with enough space to handle transcodes
 - Docker swarm is already setup and running
 - Nodes are running a local container that allows for device mapping within swarm
