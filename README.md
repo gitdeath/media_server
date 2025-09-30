@@ -27,6 +27,8 @@ Host System Assumptions:
     sudo systemctl stop apparmor.service
     sudo systemctl disable apparmor.service
     sudo apt purge apparmor
+    sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*"/GRUB_CMDLINE_LINUX_DEFAULT="apparmor=0"/' /etc/default/grub
+    sudo update-grub
     
 - Directory /transcodes and /cache exists with group ownership to users
     ```
